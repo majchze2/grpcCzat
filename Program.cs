@@ -50,7 +50,8 @@ app.UseGrpcWeb(new GrpcWebOptions
 //endpoints.MapGrpcService<ChatMessage>().EnableGrpcWeb();
 //});
 //public List<IServerStreamWriter<ChatMessage>> ob = new List<IServerStreamWriter<ChatMessage>>();
-app.MapGrpcService<CzatService>().EnableGrpcWeb();
+//app.MapGrpcService<CzatService>().EnableGrpcWeb();
+app.MapGrpcService<CzatService>();
 //app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.Run();
