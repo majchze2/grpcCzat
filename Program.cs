@@ -6,13 +6,7 @@ using System;
  
 
 var builder = WebApplication.CreateBuilder(args);
- //object ob   = new List<IServerStreamWriter<ChatMessage>>();
-//internal static object d = ;
-// Additional configuration is required to successfully run gRPC on macOS.
-// For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
-//Dane1.ReferenceEquals(ob, builder);
-// Add services to the container.
-builder.Services.AddGrpc();
+
 //var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 //builder.Services.AddGrpc(options =>
 //{
@@ -31,17 +25,17 @@ builder.Services.AddCors(o => o.AddPolicy("AllowAll", builder =>
 //const string corsPolicy = "_corsPolicy";
 //builder.Services.AddCors(options =>
 //{
- //   options.AddPolicy(name: corsPolicy,
- //                     policy =>
- //                     {
+//   options.AddPolicy(name: corsPolicy,
+//                     policy =>
+//                     {
 //                          policy.WithOrigins("https://localhost:5001",
 //                                             "http://localhost:5000")
 //                                .AllowAnyMethod();
- //                     });
+//                     });
 //});
 //WebApplication app = builder.Build();
 //app.UseCors(corsPolicy);
-
+builder.Services.AddGrpc();
 //d.ob = "";
 var app = builder.Build();
 app.UseRouting();
@@ -52,18 +46,11 @@ app.UseGrpcWeb(new GrpcWebOptions
 {
     DefaultEnabled = true
 });
-//app.UseCors(cors => cors
-//.AllowAnyMethod()
-//.AllowAnyHeader()
-//.SetIsOriginAllowed(origin => true)
-//.AllowCredentials()
-//);
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapGrpcService<CzatService>().EnableGrpcWeb();
-});
+//app.UseEndpoints(endpoints => {
+//endpoints.MapGrpcService<ChatMessage>().EnableGrpcWeb();
+//});
 //public List<IServerStreamWriter<ChatMessage>> ob = new List<IServerStreamWriter<ChatMessage>>();
-///app./MapGrpcService<CzatService>().EnableGrpcWeb();
+app.MapGrpcService<CzatService>().EnableGrpcWeb();
 //app.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 
 app.Run();
